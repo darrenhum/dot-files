@@ -9,8 +9,8 @@ alias v="vim"
 
 #ssh()
 #{
-#    if [ $1 == "root@fretboard" ] || [ $1 == "root@135.121.114.129" ] ; then
-#            command ssh root@135.121.114.225 $2
+#    if [ $1 == "root@fretboard" ] || [ $1 == "root@xxx.xxx.xxx.xxx" ] ; then
+#            command ssh root@xxx.xxx.xxx.xxx $2
 #       else
 #               command ssh "$@"
 #        fi
@@ -53,35 +53,3 @@ chpwd () {
 
     PS1="\[\033[1;34m\][\u:$HPWD]$\[\033[0m\]"
 }
-
-
-addToPath()
-{
-  PARAM1="$1"
-  RVAL=""
-
-    RVAL=`echo $PATH | \
-         awk -v var="$PARAM1" 'BEGIN { FS=":" } ; \
-           { for (i=1;i<=NF;i++) { if ($i == var) { print 1 } } }'`
-
-  if [ -z "$RVAL" ]; then
-    export PATH="$PARAM1:${PATH}"
-  fi
-}
-
-#
-#  MAINLINE
-#
-
-export IDEA_PROPERTIES="/users/$USER/.idea.properties"
-
-#export GRADLE_HOME=/usr/local/gradle-2.13
-#export GRADLE_OPTS="-Dgradle.user.home=$GRADLE_HOME/.gradle"
-export PATH="$PATH:$GRADLE_HOME/bin"
-
-export IBUS_ENABLE_SYNC_MODE=1
-
-#addToPath "/opt/<IDEA-DIR>/bin"
-#addToPath "$GRADLE_HOME/bin" 
-addToPath "/sac/tools/git/current/bin"
-addToPath "/sac/tools/apache-ant-1.7.1/bin"
